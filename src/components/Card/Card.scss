@@ -1,0 +1,33 @@
+.card {
+  width: 270px;
+  height: 365px;
+  border-radius: 4px;
+  cursor: pointer;
+  img {
+    padding: 5px;
+  }
+  .event-details {
+    padding: 5px;
+    font-family: 'Roboto Slab', serif;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .title {
+      font-size: 15px;
+    }
+    .language {
+      font-size: 11px;
+      color: darkgray;
+      span {
+        margin-right: 3px;
+      }
+    }
+    .rating {
+      margin-top: 10px;
+    }
+    .fav {
+      color: red;
+      margin-right: 5px;
+    }
+  }
+}
