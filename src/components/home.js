@@ -51,7 +51,7 @@ class Home extends Component {
 								const isRowEnd = (index + 1) % modValue === 0;
 
 								return (
-									<Fragment>
+									<Fragment key={key}>
 										<div
 											key={key}
 											className="col-md-3 col-sm-6 col-12 card-item"
@@ -91,7 +91,7 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-	eventData: PropTypes.arrayOf(PropTypes.object).isRequired,
+	eventData: PropTypes.object.isRequired,
 	dispatch: PropTypes.func.isRequired
 };
 

@@ -110,7 +110,7 @@ const mapStateToProps = state => {
 	};
 };
 EventDetails.propTypes = {
-	selectedEvent: PropTypes.object.isRequired,
+	selectedEvent: PropTypes.object,
 	rowIndex: PropTypes.number.isRequired,
 	dispatch: PropTypes.func.isRequired,
 	modValue: PropTypes.number.isRequired

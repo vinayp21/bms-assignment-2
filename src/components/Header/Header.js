@@ -66,8 +66,8 @@ class Header extends Component {
 		const {
 			eventData: { data, genre }
 		} = this.props;
-		const laguageOptions = Object.keys(data).length > 0 && this.getDropdownOptions(data[0]);
-		const genreOptions = Object.keys(data).length > 0 && this.getDropdownOptions(genre);
+		const laguageOptions = Object.keys(data).length > 0 ? this.getDropdownOptions(data[0]) : [];
+		const genreOptions = Object.keys(data).length > 0 ? this.getDropdownOptions(genre) : [];
 		return (
 			<header className="Header">
 				<nav className="navbar navbar-expand-lg navbar-light">
@@ -117,7 +117,7 @@ const mapStateToProps = state => {
 };
 
 Header.propTypes = {
-	eventData: PropTypes.array.isRequired,
+	eventData: PropTypes.object.isRequired,
 	dispatch: PropTypes.func.isRequired
 };
 
