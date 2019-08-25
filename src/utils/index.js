@@ -28,3 +28,15 @@ export const getMonth = month => {
 			return '';
 	}
 };
+
+export const screen = () => {
+	let size = '';
+	if (window.innerWidth < 575) {
+		size = 'small';
+	} else if (window.innerWidth > 575 && window.innerWidth < 768) {
+		size = 'medium';
+	} else {
+		size = 'large';
+	}
+	return size;
+};

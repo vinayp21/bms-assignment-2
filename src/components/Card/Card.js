@@ -19,24 +19,24 @@ const Card = ({ data, dispatch, selectedId }) => {
 					src={`https://in.bmscdn.com/events/moviecard/${data.EventImageCode}.jpg`}
 					alt="movie"
 				/>
-			</button>
-			<div className="event-details">
-				<div>
-					<div className="title">{data.EventTitle}</div>
-					<div className="language">
-						<span>U</span>
-						<span>|</span>
-						<span>{data.EventLanguage}</span>
+
+				<div className="event-details text-left">
+					<div>
+						<div className="title">{data.EventTitle}</div>
+						<div className="language">
+							<span>U</span>
+							<span>|</span>
+							<span>{data.EventLanguage}</span>
+						</div>
+					</div>
+					<div className="rating">
+						<span className="fas fa-heart fav" />
+						<span>
+							<b>{data.wtsPerc}%</b>
+						</span>
 					</div>
 				</div>
-				<div className="rating">
-					<span className="fas fa-heart fav" />
-					<span>
-						<b>{data.wtsPerc}%</b>
-					</span>
-				</div>
-			</div>
-			<div className="votes" />
+			</button>
 		</div>
 	);
 };

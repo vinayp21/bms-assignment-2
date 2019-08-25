@@ -1,6 +1,5 @@
 const { resolve } = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = function web(env) {
 	return {
@@ -9,7 +8,7 @@ module.exports = function web(env) {
 		},
 		mode: env.production ? 'production' : 'development',
 		output: {
-			path: resolve(__dirname, 'dist'),
+			path: resolve(__dirname, 'server/public'),
 			filename: 'js/[name].js',
 			publicPath: '/'
 		},
@@ -45,8 +44,7 @@ module.exports = function web(env) {
 			new HtmlWebPackPlugin({
 				template: './index.html',
 				filename: './index.html'
-			}),
-			new BundleAnalyzerPlugin()
+			})
 		],
 		optimization: {
 			splitChunks: {

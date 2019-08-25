@@ -5,7 +5,7 @@ import { getPageData } from '../actions/bmsAction';
 import Card from './Card/Card';
 import EventDetails from './EventDetails/EventDetails';
 import Header from './Header/Header';
-
+import { screen } from '../utils';
 import './Home.scss';
 
 const mapStateToProps = state => {
@@ -20,6 +20,18 @@ class Home extends Component {
 		dispatch(getPageData());
 	}
 
+	getModValue = size => {
+		let value = 0;
+		if (size === 'large') {
+			value = 4;
+		} else if (size === 'medium') {
+			value = 2;
+		} else {
+			value = 1;
+		}
+		return value;
+	};
+
 	render() {
 		const {
 			eventData: { data, filteredList },
@@ -28,6 +40,7 @@ class Home extends Component {
 		const list = filteredList && filteredList.length > 0 ? filteredList : data;
 		const eventObj = list[1];
 		const eventKeys = list.length > 0 && Object.keys(list[1]);
+		const modValue = this.getModValue(screen());
 		return (
 			<div className="home">
 				<Header />
@@ -35,7 +48,7 @@ class Home extends Component {
 					<div className="row">
 						{eventKeys &&
 							eventKeys.map((key, index) => {
-								const isRowEnd = (index + 1) % 4 === 0;
+								const isRowEnd = (index + 1) % modValue === 0;
 
 								return (
 									<Fragment>
@@ -51,7 +64,10 @@ class Home extends Component {
 										</div>
 										{isRowEnd && (
 											<div className="col-md-12 video-space">
-												<EventDetails rowIndex={index + 1} />
+												<EventDetails
+													rowIndex={index + 1}
+													modValue={modValue}
+												/>
 											</div>
 										)}
 									</Fragment>

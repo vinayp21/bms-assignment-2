@@ -31,12 +31,12 @@ const getAllGenre = () => {
 	return ['horror', 'drama'];
 };
 
-const EventDetails = ({ selectedEvent, rowIndex, dispatch }) => {
+const EventDetails = ({ selectedEvent, rowIndex, dispatch, modValue }) => {
 	const validRow =
 		selectedEvent &&
 		Object.keys(selectedEvent).length > 0 &&
 		rowIndex >= selectedEvent.id &&
-		rowIndex - 4 < selectedEvent.id;
+		rowIndex - modValue < selectedEvent.id;
 
 	if (validRow) {
 		const id = getVideoId(selectedEvent.TrailerURL);
@@ -112,6 +112,7 @@ const mapStateToProps = state => {
 EventDetails.propTypes = {
 	selectedEvent: PropTypes.object.isRequired,
 	rowIndex: PropTypes.number.isRequired,
-	dispatch: PropTypes.func.isRequired
+	dispatch: PropTypes.func.isRequired,
+	modValue: PropTypes.number.isRequired
 };
 export default connect(mapStateToProps)(EventDetails);
