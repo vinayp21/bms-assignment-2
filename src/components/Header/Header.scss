@@ -1,4 +1,8 @@
 .Header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1;
   .navbar {
     background-color: black;
     padding: 5px 100px;
@@ -33,6 +37,23 @@
       &:hover {
         color: #ffffff;
       }
+    }
+  }
+  .filters {
+    background-color: black;
+    padding: 10px;
+    color: #ffffff;
+    span {
+      border: 1px solid white;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 14px;
+      margin-right: 10px;
+    }
+    .remove-filter {
+      background: none;
+      border: 0;
+      color: #fff;
     }
   }
 }

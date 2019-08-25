@@ -45,7 +45,11 @@ const getUpdatedList = (state, lng, genre) => {
 	const list = state.bms.data[1];
 	const keys = Object.keys(list);
 	let newList = {};
-	if (selectedGenre[0] === 'Genre' && selectedLang[0] === 'Language') {
+	if (
+		(selectedGenre[0] === 'Genre' && selectedLang[0] === 'Language') ||
+		(selectedLang.length === 0 && selectedGenre[0] === 'Genre') ||
+		(selectedGenre === 0 && selectedLang[0] === 'Language')
+	) {
 		newList = list;
 	} else {
 		keys.forEach(eventKey => {

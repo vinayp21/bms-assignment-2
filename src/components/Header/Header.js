@@ -61,6 +61,30 @@ class Header extends Component {
 		);
 	};
 
+	getAllFilters = (selectedLanguage, selectedGenre) => {
+		const genreList = selectedLanguage.filter(lang => lang.label !== 'Language');
+		const langList = selectedGenre.filter(lang => lang.label !== 'Genre');
+		return [...genreList, ...langList];
+	};
+
+	removeFilter = filter => {
+		const { dispatch } = this.props;
+		const { selectedLanguage, selectedGenre } = this.state;
+		let filterLangData = selectedLanguage.filter(lang => lang.label !== filter.label);
+		let filterGenreData = selectedGenre.filter(lang => lang.label !== filter.label);
+		if (filterLangData.length === 0) {
+			filterLangData = [{ label: 'Language', value: 'Language' }];
+		}
+		if (filterGenreData.length === 0) {
+			filterGenreData = [{ label: 'Genre', value: 'Genre' }];
+		}
+		this.setState({
+			selectedLanguage: filterLangData,
+			selectedGenre: filterGenreData
+		});
+		dispatch(updateList(filterLangData, filterGenreData));
+	};
+
 	render() {
 		const { selectedLanguage, selectedGenre } = this.state;
 		const {
@@ -68,6 +92,7 @@ class Header extends Component {
 		} = this.props;
 		const laguageOptions = Object.keys(data).length > 0 ? this.getDropdownOptions(data[0]) : [];
 		const genreOptions = Object.keys(data).length > 0 ? this.getDropdownOptions(genre) : [];
+		const allFilters = this.getAllFilters(selectedLanguage, selectedGenre);
 		return (
 			<header className="Header">
 				<nav className="navbar navbar-expand-lg navbar-light">
@@ -106,6 +131,22 @@ class Header extends Component {
 						</ul>
 					</div>
 				</nav>
+				{allFilters.length > 0 && (
+					<div className="filters">
+						{allFilters.map(filter => (
+							<span key={filter.label}>
+								{filter.label}{' '}
+								<button
+									type="button"
+									className="remove-filter"
+									onClick={() => this.removeFilter(filter)}
+								>
+									X
+								</button>
+							</span>
+						))}
+					</div>
+				)}
 			</header>
 		);
 	}
