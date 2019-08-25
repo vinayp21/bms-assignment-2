@@ -24,6 +24,9 @@ const closeDetailsSection = dispatch => {
 
 const getVideoId = url => {
 	const urlArr = url.split('=');
+	if (urlArr.length > 1) {
+		return urlArr[1].split('&')[0];
+	}
 	return urlArr[urlArr.length - 1];
 };
 
@@ -31,12 +34,13 @@ const getAllGenre = () => {
 	return ['horror', 'drama'];
 };
 
-const EventDetails = ({ selectedEvent, rowIndex, dispatch, modValue }) => {
+const EventDetails = ({ selectedEvent, rowIndex, dispatch, modValue, lastRow }) => {
 	const validRow =
-		selectedEvent &&
-		Object.keys(selectedEvent).length > 0 &&
-		rowIndex >= selectedEvent.id &&
-		rowIndex - modValue < selectedEvent.id;
+		(selectedEvent &&
+			Object.keys(selectedEvent).length > 0 &&
+			rowIndex >= selectedEvent.id &&
+			rowIndex - modValue < selectedEvent.id) ||
+		(selectedEvent && rowIndex - selectedEvent.id < modValue && lastRow);
 
 	if (validRow) {
 		const id = getVideoId(selectedEvent.TrailerURL);
@@ -113,6 +117,7 @@ EventDetails.propTypes = {
 	selectedEvent: PropTypes.object,
 	rowIndex: PropTypes.number.isRequired,
 	dispatch: PropTypes.func.isRequired,
-	modValue: PropTypes.number.isRequired
+	modValue: PropTypes.number.isRequired,
+	lastRow: PropTypes.bool
 };
 export default connect(mapStateToProps)(EventDetails);

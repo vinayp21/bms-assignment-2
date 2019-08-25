@@ -73,6 +73,15 @@ class Home extends Component {
 									</Fragment>
 								);
 							})}
+						{eventKeys && (
+							<div className="col-md-12 video-space">
+								<EventDetails
+									lastRow
+									rowIndex={eventKeys.length}
+									modValue={modValue}
+								/>
+							</div>
+						)}
 					</div>
 				</div>
 				{!eventKeys && (
