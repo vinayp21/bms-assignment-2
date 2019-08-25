@@ -1,10 +1,15 @@
 .card {
-  width: 270px;
+  width: 245px;
   height: 365px;
   border-radius: 4px;
   cursor: pointer;
   img {
     padding: 5px;
+  }
+  button {
+    border: 0;
+    padding: 0;
+    outline: none;
   }
   .event-details {
     padding: 5px;
@@ -13,7 +18,7 @@
     flex-direction: row;
     justify-content: space-between;
     .title {
-      font-size: 15px;
+      font-size: 14px;
     }
     .language {
       font-size: 11px;
@@ -23,11 +28,14 @@
       }
     }
     .rating {
-      margin-top: 10px;
+      b {
+        font-size: 14px;
+      }
     }
     .fav {
       color: red;
-      margin-right: 5px;
+      margin-right: 3px;
+      font-size: 14px;
     }
   }
 }

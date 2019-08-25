@@ -22,6 +22,11 @@ export default function bmsReducer(previousState = initialState, action) {
 				...previousState,
 				filteredList: action.payload
 			};
+		case CONSTANT.CLOSE_VIDEO_SECTION:
+			return {
+				...previousState,
+				selectedEvent: {}
+			};
 
 		default:
 			return {

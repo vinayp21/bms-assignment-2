@@ -1,9 +1,16 @@
 body {
-  background-color: #e8e8e8;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 .container {
   max-width: 1400px;
 }
-.video-space {
-  height: 70px;
+.card-item {
+  margin-bottom: 70px;
+}
+
+.card-section {
+  margin-top: 50px;
+}
+.loader {
+  height: calc(100vh - 122px);
 }

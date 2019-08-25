@@ -10,11 +10,16 @@ const selectEvent = (data, disptach, selectedId) => {
 const Card = ({ data, dispatch, selectedId }) => {
 	return (
 		<div className="card">
-			<img
-				src={`https://in.bmscdn.com/events/moviecard/${data.EventImageCode}.jpg`}
-				alt="movie"
+			<button
+				type="button"
+				className="card-button"
 				onClick={() => selectEvent(data, dispatch, selectedId)}
-			/>
+			>
+				<img
+					src={`https://in.bmscdn.com/events/moviecard/${data.EventImageCode}.jpg`}
+					alt="movie"
+				/>
+			</button>
 			<div className="event-details">
 				<div>
 					<div className="title">{data.EventTitle}</div>

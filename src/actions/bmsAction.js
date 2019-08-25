@@ -40,7 +40,6 @@ export const setSelectedEvent = (data, id) => dispatch => {
 };
 
 const getUpdatedList = (state, lng, genre) => {
-	console.log(state, lng, genre);
 	const selectedLang = lng.map(language => language.label);
 	const selectedGenre = genre.map(gen => gen.label);
 	const list = state.bms.data[1];
@@ -77,5 +76,10 @@ export const updateList = (lng, genre) => (dispatch, getState) => {
 	dispatch({
 		type: CONSTANT.UPDATE_LIST,
 		payload: filteredData
+	});
+};
+export const closeSection = () => dispatch => {
+	dispatch({
+		type: CONSTANT.CLOSE_VIDEO_SECTION
 	});
 };

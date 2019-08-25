@@ -31,7 +31,7 @@ class Home extends Component {
 		return (
 			<div className="home">
 				<Header />
-				<div className="container">
+				<div className="container card-section">
 					<div className="row">
 						{eventKeys &&
 							eventKeys.map((key, index) => {
@@ -39,7 +39,10 @@ class Home extends Component {
 
 								return (
 									<Fragment>
-										<div key={key} className="col-md-3 col-12">
+										<div
+											key={key}
+											className="col-md-3 col-sm-6 col-12 card-item"
+										>
 											<Card
 												dispatch={dispatch}
 												data={eventObj[key]}
@@ -56,6 +59,16 @@ class Home extends Component {
 							})}
 					</div>
 				</div>
+				{!eventKeys && (
+					<div className="loader text-center d-flex align-items-center justify-content-center">
+						<img
+							src="https://media.giphy.com/media/uyCJt0OOhJBiE/giphy.gif"
+							alt=""
+							width="150"
+							height="150"
+						/>
+					</div>
+				)}
 			</div>
 		);
 	}
