@@ -1,5 +1,7 @@
 # bms-assignment-2
 
+Demo- https://my-trailer-app.herokuapp.com/
+
 Steps to run application ( prod mode)
 
 1. clone the Repository
