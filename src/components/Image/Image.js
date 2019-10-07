@@ -9,16 +9,16 @@ class Image extends Component {
 
 	componentDidMount() {
 		const { imageCode } = this.props;
-		this.observer = new IntersectionObserver(entries => {
+		let observer = new IntersectionObserver(entries => {
 			entries.forEach(entry => {
 				const { isIntersecting } = entry;
 				if (isIntersecting) {
 					this.imgRef.current.src = `https://in.bmscdn.com/events/moviecard/${imageCode}.jpg`;
-					this.observer = this.observer.disconnect();
+					observer = observer.disconnect();
 				}
 			});
 		});
-		this.observer.observe(this.imgRef.current);
+		observer.observe(this.imgRef.current);
 	}
 
 	render() {
