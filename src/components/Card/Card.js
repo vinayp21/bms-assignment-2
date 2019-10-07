@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { setSelectedEvent } from '../../actions/bmsAction';
+import Image from '../Image/Image';
 import './Card.scss';
 
 const selectEvent = (data, disptach, selectedId) => {
@@ -15,10 +16,11 @@ const Card = ({ data, dispatch, selectedId }) => {
 				className="card-button"
 				onClick={() => selectEvent(data, dispatch, selectedId)}
 			>
-				<img
+				{/* <img
 					src={`https://in.bmscdn.com/events/moviecard/${data.EventImageCode}.jpg`}
 					alt="movie"
-				/>
+				/> */}
+				<Image imageCode={data.EventImageCode} />
 
 				<div className="event-details text-left">
 					<div>
