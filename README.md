@@ -1,5 +1,7 @@
 # bms-assignment-2
 
+Demo- https://my-trailer-app.herokuapp.com/
+
 Steps to run application ( prod mode)
 
 1. clone the Repository
@@ -11,5 +13,6 @@ To run in dev mode
 
 1. go back to bms-assignment-2
 2. npm i to install dependency
-3. npm start
+3. cd server and npm i and npm start
+4. cd .. and do npm start
 3. react app starts in dev mode.
