@@ -3,17 +3,16 @@ import PropTypes from 'prop-types';
 import bmsReducer from './reducers/bmsReducer';
 
 const initialState = {
-    data: {},
-	mydata:'test'
+    data: {}
 };
 
 
 export const context = React.createContext(initialState);
 
 export const ContextProvider = ({ children })  => {
-    const [state, testdispatch] = useReducer(bmsReducer, initialState);
+    const [state, contextDispatch] = useReducer(bmsReducer, initialState);
     return (
-        <context.Provider value={{state , testdispatch}}>
+        <context.Provider value={{state , contextDispatch}}>
             {children}
         </context.Provider>
     );

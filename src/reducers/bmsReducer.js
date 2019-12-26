@@ -1,8 +1,7 @@
 import CONSTANT from '../constants/testConstants';
 
 const initialState = {
-	data: {},
-	mydata:'test'
+	data: {}
 };
 
 export default function bmsReducer(previousState = initialState, action) {

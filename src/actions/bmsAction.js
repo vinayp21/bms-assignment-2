@@ -17,7 +17,7 @@ const getAllGenres = list => {
 	return uniqueGenre;
 };
 
-export const getPageData = () => dispatch => {
+export const getPageData1 = () => dispatch => {
 	
 	axios.get('http://localhost:3001/getAllEvents').then(response => {
 		const data = JSON.parse(response.data);
@@ -91,11 +91,12 @@ export const closeSection = () => dispatch => {
 	});
 };
 
-export const testAction = (data) => {
+export const getPageData = (data,uniqueGenre ) => {
 	return {
-			type: 'useReducer',
+			type: CONSTANT.SET_APP_DATA,
 			payload: {
-				data
+				data,
+				uniqueGenre
 			}
 	}
 }

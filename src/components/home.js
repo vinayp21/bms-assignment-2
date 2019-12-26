@@ -1,5 +1,6 @@
-import React, { Component, Fragment, useContext } from 'react';
+import React, { Component, Fragment, useContext, useEffect } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios'
 import PropTypes from 'prop-types';
 import { getPageData } from '../actions/bmsAction';
 import Card from './Card/Card';
@@ -8,22 +9,32 @@ import Header from './Header/Header';
 import { screen } from '../utils';
 import Test from './test'
 import './Home.scss';
+import {context} from '../context'
 
-
-const mapStateToProps = state => {
-	return {
-		eventData: state.bms
-	};
-};
-
-class Home extends Component {
-	componentDidMount() {
-		const { dispatch } = this.props;
-		dispatch(getPageData());
-		
-	}
+const Home = () => {
+	const { state:{ data, filteredList }, contextDispatch } = useContext(context);
+	useEffect(() => {
+		const getAllGenres = list => {
+			const keys = Object.keys(list);
+			const uniqueGenre = [];
+			keys.forEach(eventKey => {
+				const genreArr = list[eventKey].EventGenre.split('|');
+				genreArr.forEach(genre => {
+					if (uniqueGenre.indexOf(genre) === -1) {
+						uniqueGenre.push(genre);
+					}
+				});
+			});
+			return uniqueGenre;
+		};
+		axios.get('http://localhost:3001/getAllEvents').then(response => {
+                const data = JSON.parse(response.data);
+                const uniqueGenre = getAllGenres(data[1]);
+                    contextDispatch(getPageData(data, uniqueGenre))
+            });
+	},[])
 	
-	getModValue = size => {
+	const getModValue = size => {
 		let value = 0;
 		if (size === 'large') {
 			value = 4;
@@ -34,25 +45,16 @@ class Home extends Component {
 		}
 		return value;
 	};
-	render() {
-		const {
-			eventData: { data, filteredList },
-			dispatch
-		} = this.props;
-// const { state } = useContext(context);
-		
-		// console.log(state)
-		// const {state:{eventData: { data, filteredList }}, testdispatch } = useContext(context);
 		const list = filteredList && filteredList.length > 0 ? filteredList : data;
 		const eventObj = list[1];
 		const eventKeys = list.length > 0 && Object.keys(list[1]);
-		const modValue = this.getModValue(screen());
+		const modValue = getModValue(screen());
 		
 		return (
 			<div className="home">
 				<Header />
 				<div className="container card-section">
-					<Test/>
+					{/* <Test/> */}
 					<div className="row">
 						{eventKeys &&
 							eventKeys.map((key, index) => {
@@ -65,7 +67,7 @@ class Home extends Component {
 											className="col-md-3 col-sm-6 col-12 card-item"
 										>
 											<Card
-												dispatch={dispatch}
+												dispatch={contextDispatch}
 												data={eventObj[key]}
 												selectedId={index + 1}
 											/>
@@ -105,11 +107,10 @@ class Home extends Component {
 			</div>
 		);
 	}
-}
 
 Home.propTypes = {
 	eventData: PropTypes.object.isRequired,
 	dispatch: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps)(Home);
+export default Home;
