@@ -1,3 +1,5 @@
+import {useContext} from 'react';
+import {context} from '../context';
 import axios from 'axios';
 import CONSTANT from '../constants/testConstants';
 
@@ -16,6 +18,7 @@ const getAllGenres = list => {
 };
 
 export const getPageData = () => dispatch => {
+	
 	axios.get('http://localhost:3001/getAllEvents').then(response => {
 		const data = JSON.parse(response.data);
 		const uniqueGenre = getAllGenres(data[1]);
@@ -87,3 +90,12 @@ export const closeSection = () => dispatch => {
 		type: CONSTANT.CLOSE_VIDEO_SECTION
 	});
 };
+
+export const testAction = (data) => {
+	return {
+			type: 'useReducer',
+			payload: {
+				data
+			}
+	}
+}

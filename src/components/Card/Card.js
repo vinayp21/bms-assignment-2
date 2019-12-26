@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import { setSelectedEvent } from '../../actions/bmsAction';
+import { setSelectedEvent, testAction } from '../../actions/bmsAction';
 import Image from '../Image/Image';
 import './Card.scss';
+import {context} from '../../context'
 
 const selectEvent = (data, disptach, selectedId) => {
 	disptach(setSelectedEvent(data, selectedId));
 };
 
+
+
 const Card = ({ data, dispatch, selectedId }) => {
+	
 	return (
 		<div className="card">
 			<button

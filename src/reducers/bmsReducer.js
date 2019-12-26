@@ -1,7 +1,8 @@
 import CONSTANT from '../constants/testConstants';
 
 const initialState = {
-	data: {}
+	data: {},
+	mydata:'test'
 };
 
 export default function bmsReducer(previousState = initialState, action) {
@@ -27,7 +28,10 @@ export default function bmsReducer(previousState = initialState, action) {
 				...previousState,
 				selectedEvent: {}
 			};
-
+		case 'useReducer':
+			return {
+				mydata:action.payload.data
+			}
 		default:
 			return {
 				...previousState

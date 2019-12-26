@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment, useContext } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getPageData } from '../actions/bmsAction';
@@ -6,7 +6,9 @@ import Card from './Card/Card';
 import EventDetails from './EventDetails/EventDetails';
 import Header from './Header/Header';
 import { screen } from '../utils';
+import Test from './test'
 import './Home.scss';
+
 
 const mapStateToProps = state => {
 	return {
@@ -18,8 +20,9 @@ class Home extends Component {
 	componentDidMount() {
 		const { dispatch } = this.props;
 		dispatch(getPageData());
+		
 	}
-
+	
 	getModValue = size => {
 		let value = 0;
 		if (size === 'large') {
@@ -31,20 +34,25 @@ class Home extends Component {
 		}
 		return value;
 	};
-
 	render() {
 		const {
 			eventData: { data, filteredList },
 			dispatch
 		} = this.props;
+// const { state } = useContext(context);
+		
+		// console.log(state)
+		// const {state:{eventData: { data, filteredList }}, testdispatch } = useContext(context);
 		const list = filteredList && filteredList.length > 0 ? filteredList : data;
 		const eventObj = list[1];
 		const eventKeys = list.length > 0 && Object.keys(list[1]);
 		const modValue = this.getModValue(screen());
+		
 		return (
 			<div className="home">
 				<Header />
 				<div className="container card-section">
+					<Test/>
 					<div className="row">
 						{eventKeys &&
 							eventKeys.map((key, index) => {
