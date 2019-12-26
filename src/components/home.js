@@ -13,6 +13,7 @@ import {context} from '../context'
 
 const Home = () => {
 	const { state:{ data, filteredList }, contextDispatch } = useContext(context);
+	
 	useEffect(() => {
 		const getAllGenres = list => {
 			const keys = Object.keys(list);

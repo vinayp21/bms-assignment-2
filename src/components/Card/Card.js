@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import { setSelectedEvent, testAction } from '../../actions/bmsAction';
 import Image from '../Image/Image';
 import './Card.scss';
-import {context} from '../../context'
-
-const selectEvent = (data, disptach, selectedId) => {
-	disptach(setSelectedEvent(data, selectedId));
-};
+// import {context} from '../../context'
 
 
 
 const Card = ({ data, dispatch, selectedId }) => {
-	
+
+	const selectEvent = (data, disptach, selectedId) => {
+		disptach(setSelectedEvent(data, selectedId));
+	};
+
 	return (
 		<div className="card">
 			<button

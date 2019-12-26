@@ -32,20 +32,20 @@ export const getPageData1 = () => dispatch => {
 	});
 };
 
-export const setSelectedEvent = (data, id) => dispatch => {
-	dispatch({
+export const setSelectedEvent = (data, id)  => {
+	return{
 		type: CONSTANT.SET_SELECTED_EVENT,
 		payload: {
 			...data,
 			id
 		}
-	});
+	};
 };
 
 const getUpdatedList = (state, lng, genre) => {
 	const selectedLang = lng.map(language => language.label);
 	const selectedGenre = genre.map(gen => gen.label);
-	const list = state.bms.data[1];
+	const list = state[1];
 	const keys = Object.keys(list);
 	let newList = {};
 	if (
@@ -74,21 +74,26 @@ const getUpdatedList = (state, lng, genre) => {
 			}
 		});
 	}
-	return [state.bms.data[0], newList];
+	console.log(newList)
+	return [state[0], newList];
 };
 
-export const updateList = (lng, genre) => (dispatch, getState) => {
-	const state = getState();
+export const updateList = (state, lng, genre) =>  {
+	// const state = getState();
 	const filteredData = getUpdatedList(state, lng, genre);
-	dispatch({
+	// dispatch({
+	// 	type: CONSTANT.UPDATE_LIST,
+	// 	payload: filteredData
+	// });
+	return {
 		type: CONSTANT.UPDATE_LIST,
 		payload: filteredData
-	});
+	}
 };
-export const closeSection = () => dispatch => {
-	dispatch({
+export const closeSection = ()  => {
+	return{
 		type: CONSTANT.CLOSE_VIDEO_SECTION
-	});
+	};
 };
 
 export const getPageData = (data,uniqueGenre ) => {

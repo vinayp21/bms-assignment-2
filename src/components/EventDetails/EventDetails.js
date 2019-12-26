@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import YouTube from 'react-youtube';
 import { closeSection } from '../../actions/bmsAction';
 import { getMonth } from '../../utils';
+import {context} from '../../context'
 import './EventDetails.scss';
 
 const opts = {
@@ -18,9 +19,7 @@ const opts = {
 // 	// access to player in all event handlers via event.target
 // 	event.target.pauseVideo();
 // };
-const closeDetailsSection = dispatch => {
-	dispatch(closeSection());
-};
+
 
 const getVideoId = url => {
 	const urlArr = url.split('=');
@@ -34,7 +33,14 @@ const getAllGenre = () => {
 	return ['horror', 'drama'];
 };
 
-const EventDetails = ({ selectedEvent, rowIndex, dispatch, modValue, lastRow }) => {
+const EventDetails = ({ rowIndex, dispatch, modValue, lastRow }) => {
+
+	const { state:{ selectedEvent }, contextDispatch } = useContext(context);
+
+	const closeDetailsSection = () => {
+		contextDispatch(closeSection());
+	};
+
 	const validRow =
 		(selectedEvent &&
 			Object.keys(selectedEvent).length > 0 &&
@@ -53,7 +59,7 @@ const EventDetails = ({ selectedEvent, rowIndex, dispatch, modValue, lastRow }) 
 					<button
 						className="close"
 						type="button"
-						onClick={() => closeDetailsSection(dispatch)}
+						onClick={closeDetailsSection}
 					>
 						X
 					</button>

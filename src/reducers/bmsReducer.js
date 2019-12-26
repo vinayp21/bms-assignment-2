@@ -27,10 +27,6 @@ export default function bmsReducer(previousState = initialState, action) {
 				...previousState,
 				selectedEvent: {}
 			};
-		case 'useReducer':
-			return {
-				mydata:action.payload.data
-			}
 		default:
 			return {
 				...previousState
