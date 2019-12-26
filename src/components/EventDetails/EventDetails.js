@@ -1,6 +1,5 @@
 import React, {useContext} from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import YouTube from 'react-youtube';
 import { closeSection } from '../../actions/bmsAction';
 import { getMonth } from '../../utils';
@@ -20,25 +19,24 @@ const opts = {
 // 	event.target.pauseVideo();
 // };
 
-
-const getVideoId = url => {
-	const urlArr = url.split('=');
-	if (urlArr.length > 1) {
-		return urlArr[1].split('&')[0];
-	}
-	return urlArr[urlArr.length - 1];
-};
-
-const getAllGenre = () => {
-	return ['horror', 'drama'];
-};
-
 const EventDetails = ({ rowIndex, dispatch, modValue, lastRow }) => {
 
 	const { state:{ selectedEvent }, contextDispatch } = useContext(context);
 
 	const closeDetailsSection = () => {
 		contextDispatch(closeSection());
+	};
+
+	const getVideoId = url => {
+		const urlArr = url.split('=');
+		if (urlArr.length > 1) {
+			return urlArr[1].split('&')[0];
+		}
+		return urlArr[urlArr.length - 1];
+	};
+	
+	const getAllGenre = () => {
+		return ['horror', 'drama'];
 	};
 
 	const validRow =
@@ -114,11 +112,7 @@ const EventDetails = ({ rowIndex, dispatch, modValue, lastRow }) => {
 
 	return null;
 };
-const mapStateToProps = state => {
-	return {
-		selectedEvent: state.bms.selectedEvent
-	};
-};
+
 EventDetails.propTypes = {
 	selectedEvent: PropTypes.object,
 	rowIndex: PropTypes.number.isRequired,
@@ -126,4 +120,4 @@ EventDetails.propTypes = {
 	modValue: PropTypes.number.isRequired,
 	lastRow: PropTypes.bool
 };
-export default connect(mapStateToProps)(EventDetails);
+export default EventDetails;

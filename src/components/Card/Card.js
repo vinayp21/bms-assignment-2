@@ -1,11 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { setSelectedEvent, testAction } from '../../actions/bmsAction';
+import { setSelectedEvent } from '../../actions/bmsAction';
 import Image from '../Image/Image';
 import './Card.scss';
-// import {context} from '../../context'
-
-
 
 const Card = ({ data, dispatch, selectedId }) => {
 

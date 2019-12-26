@@ -1,5 +1,4 @@
-import React, { Component, Fragment, useContext, useEffect } from 'react';
-import { connect } from 'react-redux';
+import React, { Fragment, useContext, useEffect } from 'react';
 import axios from 'axios'
 import PropTypes from 'prop-types';
 import { getPageData } from '../actions/bmsAction';
@@ -7,7 +6,6 @@ import Card from './Card/Card';
 import EventDetails from './EventDetails/EventDetails';
 import Header from './Header/Header';
 import { screen } from '../utils';
-import Test from './test'
 import './Home.scss';
 import {context} from '../context'
 
@@ -55,7 +53,6 @@ const Home = () => {
 			<div className="home">
 				<Header />
 				<div className="container card-section">
-					{/* <Test/> */}
 					<div className="row">
 						{eventKeys &&
 							eventKeys.map((key, index) => {

@@ -1,6 +1,5 @@
-import React, { Component, useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ReactMultiSelectCheckboxes from 'react-multiselect-checkboxes';
 import { updateList } from '../../actions/bmsAction';
@@ -8,20 +7,9 @@ import './Header.scss';
 import {context} from '../../context'
 
 const Header = () => {
-	// constructor() {
-	// 	super();
-	// 	this.state = {
-	// 		selectedLanguage: [{ label: 'Language', value: 'Language' }],
-	// 		selectedGenre: [{ label: 'Genre', value: 'Genre' }]
-	// 	};
-	// }
 	const [selectedLanguage, setSelectedLanguage] = useState([{ label: 'Language', value: 'Language' }])
 	const [selectedGenre, setSelectedGenre] = useState([{ label: 'Genre', value: 'Genre' }])
 	const { state:{ data, genre }, contextDispatch } = useContext(context);
-
-	// useEffect(() => {
-	// 	contextDispatch(updateList(data, selectedLanguage, selectedGenre));
-	// },[selectedLanguage])
 
 	const getDropdownOptions = data => {
 		const options = data.map(lang => {
@@ -34,42 +22,22 @@ const Header = () => {
 	};
 
 	const selectLanguage = selectedData => {
-		// const { dispatch } = this.props;
 		let langData = [];
 		langData = selectedData.filter(lang => lang.label !== 'Language');
 		if (selectedData.length === 0) {
 			langData = [{ label: 'Language', value: 'Language' }];
 		}
-		// this.setState(
-		// 	{
-		// 		selectedLanguage: [...data]
-		// 	},
-		// 	() => {
-		// 		const { selectedLanguage, selectedGenre } = this.state;
-		// 		dispatch(updateList(selectedLanguage, selectedGenre));
-		// 	}
-		// );
 		setSelectedLanguage([...langData]);
 		contextDispatch(updateList(data, [...langData], selectedGenre));
 
 	};
 
 	const selectGenre = selectedData => {
-		// const { dispatch } = this.props;
 		let genreData = [];
 		genreData = selectedData.filter(lang => lang.label !== 'Genre');
 		if (selectedData.length === 0) {
 			genreData = [{ label: 'Genre', value: 'Genre' }];
 		}
-		// this.setState(
-		// 	{
-		// 		selectedGenre: [...data]
-		// 	},
-		// 	() => {
-		// 		const { selectedGenre, selectedLanguage } = this.state;
-		// 		dispatch(updateList(selectedLanguage, selectedGenre));
-		// 	}
-		// );
 		setSelectedGenre([...genreData]);
 		contextDispatch(updateList(data,selectedLanguage, [...genreData]));
 		
@@ -157,16 +125,10 @@ const Header = () => {
 			</header>
 		);
 	}
-// }
-const mapStateToProps = state => {
-	return {
-		eventData: state.bms
-	};
-};
 
 Header.propTypes = {
 	eventData: PropTypes.object.isRequired,
 	dispatch: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps)(Header);
+export default Header;

@@ -3,34 +3,6 @@ import {context} from '../context';
 import axios from 'axios';
 import CONSTANT from '../constants/testConstants';
 
-const getAllGenres = list => {
-	const keys = Object.keys(list);
-	const uniqueGenre = [];
-	keys.forEach(eventKey => {
-		const genreArr = list[eventKey].EventGenre.split('|');
-		genreArr.forEach(genre => {
-			if (uniqueGenre.indexOf(genre) === -1) {
-				uniqueGenre.push(genre);
-			}
-		});
-	});
-	return uniqueGenre;
-};
-
-export const getPageData1 = () => dispatch => {
-	
-	axios.get('http://localhost:3001/getAllEvents').then(response => {
-		const data = JSON.parse(response.data);
-		const uniqueGenre = getAllGenres(data[1]);
-		dispatch({
-			type: CONSTANT.SET_APP_DATA,
-			payload: {
-				data,
-				uniqueGenre
-			}
-		});
-	});
-};
 
 export const setSelectedEvent = (data, id)  => {
 	return{
@@ -79,12 +51,7 @@ const getUpdatedList = (state, lng, genre) => {
 };
 
 export const updateList = (state, lng, genre) =>  {
-	// const state = getState();
 	const filteredData = getUpdatedList(state, lng, genre);
-	// dispatch({
-	// 	type: CONSTANT.UPDATE_LIST,
-	// 	payload: filteredData
-	// });
 	return {
 		type: CONSTANT.UPDATE_LIST,
 		payload: filteredData
